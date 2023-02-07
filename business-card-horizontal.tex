@@ -1,0 +1,102 @@
+% !TEX TS-program = pdflatex
+
+% You could use xelatex for easier font customization,
+%   but it requires more intervention to make FontAwesome work.
+%   see (e.g.) https://tex.stackexchange.com/questions/132888/fontawesome-font-not-found: 
+
+
+\documentclass[10pt, oneside, final]{article}
+
+% \usepackage{tikz}
+\usepackage{parskip}           % remove paragraph indents
+\usepackage{graphicx}
+
+%----------------------------------------------------------------------------------------
+%	COLOURS AND LINKS
+%----------------------------------------------------------------------------------------
+
+\usepackage[usenames,svgnames]{xcolor} % Allows the definition and use of custom colours
+
+\definecolor{text}{HTML}{2b2b2b} % Main document font colour, off-black
+\definecolor{headings}{HTML}{701112} % Dark red colour for headings
+\definecolor{shade}{HTML}{F5DD9D} % Peach colour for the contact information box
+\definecolor{linkcolor}{HTML}{0000ff} % 25% desaturated headings colour for links
+\definecolor{python}{HTML}{0E5484}
+\definecolor{maingray}{HTML}{B9B9B9}
+% Other colour options: shade=B9D7D9 and linkcolor=A40000; shade=D4D7FE and linkcolor=FF0080
+
+% For preset colours that can be used by their names without having to define them, see: https://www.latextemplates.com/svgnames-colors
+
+\color{text} % Set the default text colour for the whole document to the colour defined as 'text' above
+
+%------------------------------------------------
+
+\usepackage{hyperref} % Required for links
+
+\hypersetup{colorlinks, breaklinks, urlcolor=linkcolor, linkcolor=linkcolor} % Set up links and their colours
+
+
+% set all margins to 0 and set business card size
+\usepackage[
+  paperwidth = 3.5in,
+  paperheight = 2in,
+  margin = 0.2in,
+  noheadfoot
+]{geometry}
+
+% interline spacing
+\setlength{\baselineskip}{0cm} % between baselines
+\setlength{\topskip}{0pt}      % between header and text block
+
+% wrapping text around figure
+\usepackage{wrapfig}
+
+% --- fonts -----------------------
+% MinionPro is difficult to set up. 
+%   see e.g. https://kieranhealy.org/blog/archives/2012/11/10/installing-minion-pro/
+% \usepackage[lf, mathtabular, minionint]{MinionPro} % serif
+\usepackage[scaled = 0.9]{FiraSans}                % sans
+\usepackage[varqu, scaled = 0.95]{zi4}             % mono w/ straight quotes
+\usepackage{fontawesome}                           % FA icons
+
+\usepackage{fontspec}
+\usepackage{svg}
+
+\setmainfont[
+  Path = fonts/,
+  Ligatures=TeX,
+  UprightFont   = MinionPro-Regular.otf,
+  BoldItalicFont= MinionPro-BoldIt.otf,
+  BoldFont      = MinionPro-Bold.otf,
+  ItalicFont    = MinionPro-It.otf
+  ]{MinionPro}
+
+\setmonofont[
+  Path=fonts/,
+  Scale=MatchLowercase,
+  UprightFont=consola.ttf]{Consolas}
+
+
+\begin{document}
+
+  \thispagestyle{empty}
+  
+  \begin{wrapfigure}{r}{0.35\textwidth}
+  \includesvg[width = 0.35\textwidth]{img/QR_code.svg}
+  \end{wrapfigure}
+
+  {\large\textsf{\textbf{Khalil Al Handawi}}}
+
+  \textit{Ph.D} \\
+  {Researcher, Engineer, Programmer}
+
+  \emph{Optimization, decision-making, \\ simulation, and engineering design}
+
+  \vfill 
+  {\faEnvelope} \texttt{\href{mailto:khalilbassaam@hotmail.com}{khalilbassaam@hotmail.com}} \hfill 
+  {\faGithub} \texttt{ \href{https://github.com/khbalhandawi}{khbalhandawi}} \\
+  {\faPhone} {+1{\textendash}514{\textendash}572{\textendash}7367 \hfill}
+  {\faGlobe} \texttt{ \href{https://khbalhandawi.github.io/}{khbalhandawi.github.io}}
+  
+
+\end{document}
