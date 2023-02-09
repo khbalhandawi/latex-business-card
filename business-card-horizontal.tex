@@ -4,7 +4,6 @@
 %   but it requires more intervention to make FontAwesome work.
 %   see (e.g.) https://tex.stackexchange.com/questions/132888/fontawesome-font-not-found: 
 
-
 \documentclass[10pt, oneside, final]{article}
 
 % \usepackage{tikz}
@@ -20,9 +19,10 @@
 \definecolor{text}{HTML}{2b2b2b} % Main document font colour, off-black
 \definecolor{headings}{HTML}{701112} % Dark red colour for headings
 \definecolor{shade}{HTML}{F5DD9D} % Peach colour for the contact information box
-\definecolor{linkcolor}{HTML}{0000ff} % 25% desaturated headings colour for links
+\definecolor{linkcolor}{HTML}{000000} % 25% desaturated headings colour for links
 \definecolor{python}{HTML}{0E5484}
 \definecolor{maingray}{HTML}{B9B9B9}
+\definecolor{lightpink}{HTML}{FFF0FD}
 % Other colour options: shade=B9D7D9 and linkcolor=A40000; shade=D4D7FE and linkcolor=FF0080
 
 % For preset colours that can be used by their names without having to define them, see: https://www.latextemplates.com/svgnames-colors
@@ -35,12 +35,18 @@
 
 \hypersetup{colorlinks, breaklinks, urlcolor=linkcolor, linkcolor=linkcolor} % Set up links and their colours
 
-
 % set all margins to 0 and set business card size
-\usepackage[
-  paperwidth = 3.5in,
-  paperheight = 2in,
-  margin = 0.2in,
+% \usepackage[
+%   paperwidth = 3.5in,
+%   paperheight = 2in,
+%   margin = 0.2in,
+%   noheadfoot
+% ]{geometry}
+\usepackage[left=1cm, 
+  right=1cm, 
+  top=1cm,
+  bottom=1cm,
+  margin = 0.0in,
   noheadfoot
 ]{geometry}
 
@@ -76,27 +82,77 @@
   Scale=MatchLowercase,
   UprightFont=consola.ttf]{Consolas}
 
+\newsavebox\currbizcard
+ 
+\usepackage{scrextend}
+\newlength\xbetweencards
+\newlength\ybetweencards
+\setlength\xbetweencards{24pt}
+\setlength\ybetweencards{12pt}
+
+\usepackage{tcolorbox}
+\tcbuselibrary{skins}
 
 \begin{document}
 
-  \thispagestyle{empty}
-  
-  \begin{wrapfigure}{r}{0.35\textwidth}
-  \includesvg[width = 0.35\textwidth]{img/QR_code.svg}
-  \end{wrapfigure}
+\sbox\currbizcard{%
+  \begin{tcolorbox}[width=3.5in,
+    height=2.5in,
+    colback=white,
+    colframe=gray!50,
+    sharp corners,
+    boxrule=0.5pt,
+    % enhanced,
+    % frame hidden,
+    % interior hidden,
+    boxsep=0pt,
+    left=5pt,
+    right=10pt,
+    top=5pt,
+    bottom=10pt
+    ]%%
+    \begin{minipage}[c][2.3in][c]{3.3in}%
+      \noindent
+      \thispagestyle{empty}
 
-  {\large\textsf{\textbf{Khalil Al Handawi}}}
+      \begin{wrapfigure}{r}{0.38\textwidth}
+        \vspace{0.5em}
+        \includesvg[width = 0.38\textwidth]{img/QR_code.svg}
+      \end{wrapfigure}
 
-  \textit{Ph.D} \\
-  {Researcher, Engineer, Programmer}
+      ~\\
+      ~\\
+      {\large\textsf{\textbf{Khalil Al Handawi}}}
 
-  \emph{Optimization, decision-making, \\ simulation, and engineering design}
+      \textit{Ph.D.} \\
+      ~\\
+      ~\\
 
-  \vfill 
-  {\faEnvelope} \texttt{\href{mailto:khalilbassaam@hotmail.com}{khalilbassaam@hotmail.com}} \hfill 
-  {\faGithub} \texttt{ \href{https://github.com/khbalhandawi}{khbalhandawi}} \\
-  {\faPhone} {+1{\textendash}514{\textendash}572{\textendash}7367 \hfill}
-  {\faGlobe} \texttt{ \href{https://khbalhandawi.github.io/}{khbalhandawi.github.io}}
-  
+      \emph{Optimization, decision-making, \\ simulation, and engineering design}
+
+      \vfill 
+      {\faEnvelope} \texttt{\href{mailto:khalilbassaam@hotmail.com}{khalilbassaam@hotmail.com}} \hfill 
+      {\faPhone} {(514){~}572{\textendash}7367} \\
+      {\faGlobe} \texttt{ \href{https://khbalhandawi.github.io/}{khbalhandawi.github.io} \hfill}
+      {\faGithub} \texttt{ \href{https://github.com/khbalhandawi}{khbalhandawi}}
+
+      \hspace{-0.0\linewidth}
+      \vspace{-0.125in}
+      \makebox[1\linewidth][c]{\tikz{\filldraw[fill=lightpink,draw=none,opacity=1](0,0) rectangle (3.5in,0.175in);}}
+
+    \end{minipage}
+  \end{tcolorbox}
+}
+\eject \pdfpagewidth=3.5in \pdfpageheight=2.5in
+\usebox\currbizcard
+\cleardoublepage
+\eject \pdfpagewidth=8.5in \pdfpageheight=11in
+\centering
+\null\vfill
+  \usebox\currbizcard\hspace{\xbetweencards}\usebox\currbizcard\\[\ybetweencards]
+  \usebox\currbizcard\hspace{\xbetweencards}\usebox\currbizcard\\[\ybetweencards]
+  \usebox\currbizcard\hspace{\xbetweencards}\usebox\currbizcard\\[\ybetweencards]
+  \usebox\currbizcard\hspace{\xbetweencards}\usebox\currbizcard\\\par
+\vfill\clearpage
 
 \end{document}
